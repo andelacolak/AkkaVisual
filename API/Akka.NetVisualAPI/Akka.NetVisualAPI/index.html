@@ -1,0 +1,54 @@
+<html>
+
+    <head>
+        <title>SignalMan</title>    
+        <script src="/Scripts/jquery-1.6.4.min.js"></script>
+        <script src="/Scripts/jquery.signalR-2.4.0-preview1-20180920-03.js"></script>
+        <script src="/signalr/hubs"></script>
+        <script type="text/javascript">
+        //http://localhost:51510/visual
+            $(function() {
+                // var connection = $.hubConnection('http://localhost:51510/');
+                // proxy = connection.createHubProxy('visual');
+                // connection.start()
+                //      .done(function () {
+                //          proxy.invoke('subscribe');
+                //          console.log("subscribed");
+                //      })
+                //      .fail(function () { alert("Could not Connect!"); });
+                // proxy.on('PostToClient', function (data) {
+                //     console.log(data);
+                // });
+
+            //     var chat = $.connection.visual;
+            //     // Create a function that the hub can call back to display messages.
+            //     chat.client.GetVectorClock = function (data) {
+            //         console.log("data");
+            //         console.log(data);
+            //     };
+            //     // Start the connection.
+            //     $.connection.hub.start().done(function () {
+            //             console.log("success");
+            //         });
+
+                //Stored reference to the hub.
+                var visualHub = $.connection.visualHub;
+                //Initialize the connection.
+                $.connection.hub.start().done(function () {
+                    console.log("success");
+                    //call server
+                    console.log(visualHub.server.send());
+                });
+
+                visualHub.client.broadcastMessage = function (message) {
+                // Add the message to the page.
+                    console.log("message", message);
+                };
+            });
+        </script>
+    </head>
+
+    <body>
+        <h1>SignalMan</h1>
+    </body>
+</html>

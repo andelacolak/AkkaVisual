@@ -1,0 +1,77 @@
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\bin\Debug\Zdk01.exe.config
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\bin\Debug\Zdk01.exe
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\bin\Debug\Zdk01.pdb
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\bin\Debug\Akka.dll
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\bin\Debug\Newtonsoft.Json.dll
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\bin\Debug\System.Collections.Immutable.dll
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\bin\Debug\Akka.xml
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\bin\Debug\Newtonsoft.Json.xml
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\bin\Debug\System.Collections.Immutable.xml
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\obj\Debug\Zdk01.csprojResolveAssemblyReference.cache
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\obj\Debug\Zdk01.Form1.resources
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\obj\Debug\Zdk01.Properties.Resources.resources
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\obj\Debug\Zdk01.csproj.GenerateResource.Cache
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\obj\Debug\Zdk01.exe
+\\mac\home\documents\visual studio 2015\Projects\Zdk01\Zdk01\obj\Debug\Zdk01.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\bin\Debug\Zdk01.exe.config
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\bin\Debug\Zdk01.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\bin\Debug\Zdk01.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\bin\Debug\Akka.dll
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\bin\Debug\Newtonsoft.Json.dll
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\bin\Debug\System.Collections.Immutable.dll
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\bin\Debug\Akka.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\bin\Debug\Newtonsoft.Json.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\bin\Debug\System.Collections.Immutable.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\obj\Debug\Zdk01.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\obj\Debug\Zdk01.Form1.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\obj\Debug\Zdk01.Properties.Resources.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\obj\Debug\Zdk01.csproj.GenerateResource.Cache
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\obj\Debug\Zdk01.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\PrviKolokvij_A\Zdk01\Zdk01\obj\Debug\Zdk01.pdb
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\bin\Debug\Zdk01.exe.config
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\obj\Debug\Zdk01.exe
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\obj\Debug\Zdk01.pdb
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\bin\Debug\Zdk01.exe
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\bin\Debug\Zdk01.pdb
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\bin\Debug\Akka.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\bin\Debug\System.Collections.Immutable.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\bin\Debug\Akka.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\bin\Debug\System.Collections.Immutable.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\obj\Debug\Zdk01.csprojResolveAssemblyReference.cache
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\obj\Debug\Zdk01.Form1.resources
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\obj\Debug\Zdk01.Properties.Resources.resources
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\nastava\2016-2017\rs_16-17\ispiti\prvi kolokvij\GrupaA\Zdk01\Zdk01\obj\Debug\Zdk01.csproj.GenerateResource.Cache
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\bin\Debug\Zdk01.exe.config
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\obj\Debug\Zdk01.exe
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\obj\Debug\Zdk01.pdb
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\bin\Debug\Zdk01.exe
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\bin\Debug\Zdk01.pdb
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\bin\Debug\Akka.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\bin\Debug\System.Collections.Immutable.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\bin\Debug\Akka.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\bin\Debug\System.Collections.Immutable.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\obj\Debug\Zdk01.csprojResolveAssemblyReference.cache
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\obj\Debug\Zdk01.Form1.resources
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\obj\Debug\Zdk01.Properties.Resources.resources
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\obj\Debug\Zdk01.csproj.GenerateResource.Cache
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Zdk01.exe.config
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.exe
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.pdb
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Zdk01.exe
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Zdk01.pdb
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Akka.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\System.Collections.Immutable.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Akka.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\System.Collections.Immutable.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.Form1.resources
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.Properties.Resources.resources
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.csproj.GenerateResource.Cache
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\VCLogger.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\VCLogger.pdb
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.csprojResolveAssemblyReference.cache

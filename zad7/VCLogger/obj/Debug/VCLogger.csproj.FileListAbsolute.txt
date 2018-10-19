@@ -1,0 +1,11 @@
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\bin\Debug\VCLogger.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\bin\Debug\VCLogger.pdb
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\bin\Debug\Akka.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\bin\Debug\System.Collections.Immutable.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\bin\Debug\Akka.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\bin\Debug\System.Collections.Immutable.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\obj\Debug\VCLogger.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\obj\Debug\VCLogger.pdb
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\VCLogger\obj\Debug\VCLogger.csprojResolveAssemblyReference.cache
