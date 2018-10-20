@@ -5,16 +5,25 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using Akka.NetVisualAPI.Models;
 using Microsoft.AspNet.SignalR.Hubs;
+using System.Threading.Tasks;
 
 namespace Akka.NetVisualAPI
 {
     //[HubName("visual")]
     public class VisualHub : Hub
     {
-        public void Send()
+        private VectorClock _previousValue;
+
+        public async Task Send()
         {
-            // Call the sendMessage method to push to clients.
-            Clients.All.broadcastMessage(VectorClockHolder.GetVectorClock());
+            while (true)
+            {
+                if (_previousValue != VectorClockHolder.GetVectorClock())
+                {
+                    await Clients.All.broadcastMessage(VectorClockHolder.GetVectorClock());
+                    _previousValue = VectorClockHolder.GetVectorClock();
+                }
+            }
         }
     }
 }
