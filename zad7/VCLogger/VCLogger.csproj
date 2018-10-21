@@ -58,6 +58,7 @@
     <Compile Include="MailBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VectorClock.cs" />
+    <Compile Include="VectorClockHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

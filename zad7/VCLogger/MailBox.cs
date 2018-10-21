@@ -60,6 +60,8 @@ namespace VCLogger
 
         private void OnSend(IActorRef receiver, Envelope envelope)
         {
+            _clock_sender = VectorClockHelper.GetVectorClock(envelope.Sender.Path.ToString());
+
             _clock_sender.Update(
                envelope.Sender.Path.ToString(),
                receiver.Path.ToString(),
@@ -67,10 +69,14 @@ namespace VCLogger
                );
 
             _clock_sender.Tick(envelope.Sender.Path.ToString());
+
+            VectorClockHelper.Update(envelope.Sender.Path.ToString(), _clock_sender);
         }
 
         private void OnReceive(IActorRef receiver, Envelope envelope)
         {
+            _clock_receiver = VectorClockHelper.GetVectorClock(receiver.Path.ToString());
+
             _clock_receiver.Update(
                envelope.Sender.Path.ToString(),
                receiver.Path.ToString(),
@@ -80,6 +86,8 @@ namespace VCLogger
             _clock_receiver.Merge(_clock_sender);
 
             _clock_receiver.Tick(receiver.Path.ToString());
+
+            VectorClockHelper.Update(receiver.Path.ToString(), _clock_receiver);
         }
 
         private void SendToAPI()
