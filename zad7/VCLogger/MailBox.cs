@@ -23,7 +23,8 @@ namespace VCLogger
 
     class VisualMailbox : IMessageQueue, IUnboundedMessageQueueSemantics, IMultipleConsumerSemantics
     {
-        private VectorClock _clock = new VectorClock();
+        private VectorClock _clock_sender = new VectorClock();
+        private VectorClock _clock_receiver = new VectorClock();
 
         private IMessageQueue _messageQueue;
 
@@ -43,21 +44,9 @@ namespace VCLogger
 
         public void Enqueue(IActorRef receiver, Envelope envelope)
         {
-            _clock.Update(
-               envelope.Sender.Path.ToString(),
-               receiver.Path.ToString(),
-               envelope.Message.GetType().Name
-               );
+            OnSend(receiver, envelope);
 
-            _clock.Tick(receiver.Path.ToString());
-
-            _clock.Merge(ReturnVectorClock(envelope.Sender));
-
-            //delete later
-
-           // VectorClockHelper.VectorClockList[receiver.Path.ToString()] = VectorClock.DeepClone(_clock);
-
-           // var temp = VectorClockHelper.VectorClockList;
+            OnReceive(receiver, envelope);
 
             SendToAPI();
 
@@ -69,10 +58,28 @@ namespace VCLogger
             return _messageQueue.TryDequeue(out envelope);
         }
 
-        private VectorClock ReturnVectorClock(IActorRef actor)
+        private void OnSend(IActorRef receiver, Envelope envelope)
         {
-            return VectorClockHelper.VectorClockList.ContainsKey(actor.Path.ToString()) ?
-                VectorClockHelper.VectorClockList[actor.Path.ToString()] : new VectorClock();
+            _clock_sender.Update(
+               envelope.Sender.Path.ToString(),
+               receiver.Path.ToString(),
+               envelope.Message.GetType().Name
+               );
+
+            _clock_sender.Tick(envelope.Sender.Path.ToString());
+        }
+
+        private void OnReceive(IActorRef receiver, Envelope envelope)
+        {
+            _clock_receiver.Update(
+               envelope.Sender.Path.ToString(),
+               receiver.Path.ToString(),
+               envelope.Message.GetType().Name
+               );
+            
+            _clock_receiver.Merge(_clock_sender);
+
+            _clock_receiver.Tick(receiver.Path.ToString());
         }
 
         private void SendToAPI()
@@ -80,14 +87,20 @@ namespace VCLogger
             using (var client = new WebClient())
             {
                 var values = new NameValueCollection();
-                values["sender"] = _clock.Sender;
-                values["receiver"] = _clock.Receiver;
-                values["message"] = _clock.Message;
-                values["clock"] = _clock.Clock.ToString();
+                values["sender"] = _clock_sender.Sender;
+                values["receiver"] = _clock_sender.Receiver;
+                values["message"] = _clock_sender.Message;
+                values["clock"] = _clock_sender.Clock.ToString();
 
-                var response = client.UploadValues("http://localhost:51510/api/vector_clock/save", values);
-
-                var responseString = Encoding.Default.GetString(response);
+                try
+                {
+                    var response = client.UploadValues("http://localhost:51510/api/vector_clock/save", values);
+                    var responseString = Encoding.Default.GetString(response);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine("[ERROR] Visualisation API connection has failed.");
+                }
             }
         }
     }
