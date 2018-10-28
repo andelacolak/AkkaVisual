@@ -1,10 +1,7 @@
  var nodes, edges, logData, graphData, timelineData, i;
  $(function() {
-                //logData = JSON.parse(data);  
                 nodes = new vis.DataSet();
                 edges = new vis.DataSet();
-                //DrawGraph(logData);
-                //DrawTimeline(logData);
                 DrawGraph();
                 DrawTimeline();
                 ConnectToServer();
@@ -24,23 +21,15 @@
 
             function DrawTimeline() {
               var timelineContainer = document.getElementById('mytimeline');
-              timelineData = new vis.DataSet([{id : 888, content: "test", start: new Date(0,0,0,0,0,0,1)},
-                {id : 999, content: "test2", start: new Date(0,0,0,0,0,0,2)}]);
+              timelineData = new vis.DataSet([]);
               console.log(timelineData);
-              var options = {};
+              var options = {
+                start: new Date(0,0,0,0,0,0,0),
+                end: new Date(0,0,0,0,0,0,2)
+              };
               var timeline = new vis.Timeline(timelineContainer, timelineData, options);
             }
 
-            // function ReturnTimelineData(logData) {
-            //   var list = [];
-            //   $(logData).each(function(index, value) {
-            //         var sender = ExtractName(value.Sender);
-            //         var receiver = ExtractName(value.Receiver);
-            //         list.push({id : index, content: "{0} sent<br> message {1}<br> to {2}".format(sender, value.Message, receiver), start: new Date(0,0,0,0,0,0,index)});
-            //     });
-            //   console.log(list);
-            //   return list;
-            // }
             function AddDataToGraph(logData) {
               var sender = ExtractName(logData.Sender);
               var receiver = ExtractName(logData.Receiver);
