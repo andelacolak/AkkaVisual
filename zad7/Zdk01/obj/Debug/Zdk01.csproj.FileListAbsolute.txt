@@ -59,8 +59,6 @@ C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\obj\D
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\obj\Debug\Zdk01.Properties.Resources.resources
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\vj4\Zdk07\Zdk01\obj\Debug\Zdk01.csproj.GenerateResource.Cache
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Zdk01.exe.config
-C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.exe
-C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.pdb
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Zdk01.exe
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Zdk01.pdb
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\Akka.dll
@@ -72,6 +70,8 @@ C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\Mai
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.Form1.resources
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.Properties.Resources.resources
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.csproj.GenerateResource.Cache
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.exe
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.pdb
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\VCLogger.dll
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\VCLogger.pdb
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.csprojResolveAssemblyReference.cache

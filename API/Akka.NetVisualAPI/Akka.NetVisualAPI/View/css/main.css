@@ -1,0 +1,19 @@
+.container {
+	margin: 10px;
+}
+
+.labelset .inner {
+  height: 100px;
+}
+
+
+#mynetwork {
+    width: 100%;
+    height: 60%;
+    margin: 0px;
+    padding: 0px;
+}
+
+#mytimeline {
+	height: 100%;
+}
