@@ -6,6 +6,15 @@
   height: 100px;
 }
 
+.vis-item.vis-box.green {
+	background-color: #B0A1BA;
+	border-color: #8A7B94;
+	border-width: 1px;
+}
+
+.vis-item.vis-selected {
+	border-width: 3px !important;
+}
 
 #mynetwork {
     width: 100%;

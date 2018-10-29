@@ -1,7 +1,11 @@
- var nodes, edges, logData, graphData, timelineData, i;
+ var nodes, edges, logData, graphData, timelineData, i, colors, groups;
  $(function() {
                 nodes = new vis.DataSet();
                 edges = new vis.DataSet();
+                //different colors for different projects
+                //find a way to have infinite projects
+                colors = ["#B0A1BA", "#A5B5BF", "#ABC8C7", "#B8E2C8", "#BFF0D4"];
+                groups = [];
                 DrawGraph();
                 DrawTimeline();
                 ConnectToServer();
@@ -24,6 +28,7 @@
               timelineData = new vis.DataSet([]);
               console.log(timelineData);
               var options = {
+                editable: true,
                 start: new Date(0,0,0,0,0,0,0),
                 end: new Date(0,0,0,0,0,0,2)
               };
@@ -33,16 +38,15 @@
             function AddDataToGraph(logData) {
               var sender = ExtractName(logData.Sender);
               var receiver = ExtractName(logData.Receiver);
-              AddNode(sender); 
-              AddNode(receiver);
+              AddNode(sender, GetGroup(logData.Sender)); 
+              AddNode(receiver, GetGroup(logData.Receiver));
               AddEdge(sender, receiver, logData.Message);
             }
 
             function AddDataToTimeline(logData) {
-              var sender = ExtractName(logData.Sender);
-              var receiver = ExtractName(logData.Receiver);
-              timelineData.add({id : i, content: "{0} sent <br> message {1}<br> to {2}".format(sender, logData.Message, receiver), start: new Date(0,0,0,0,0,0,i)});
-              console.log("timeline", timelineData);
+              var sender = logData.Sender;
+              var receiver = logData.Receiver;
+              timelineData.add({id : i, content: "{0} sent <br> message {1}<br> to {2}".format(sender, logData.Message, receiver), start: new Date(0,0,0,0,0,0,i), className: 'green'});
             }
 
             String.prototype.format = function() {
@@ -58,9 +62,28 @@
                 return fullNameArray.slice(3, fullNameArray.length).join("/");
             }
 
-            function AddNode(node) {
+            function AddGroup(group) {
+              console.log("groups",groups);
+              if(!groups.includes(group)) {
+                groups.push(group);
+              }
+            }
+
+            function GetGroup(fullName) {
+              var group = fullName.split("/")[2];
+              AddGroup(group);
+              return group;
+            }
+
+            //having troubles with dynamic group add
+            function GetColor(group) {
+              return colors[groups.indexOf(group)];
+            }
+
+            function AddNode(node, group) {
                 if(!graphData.nodes.getIds().includes(node)) {
-                    nodes.add({id: node, label: node});
+                    nodes.add({id: node, label: node, color: GetColor(group)});
+                    console.log(nodes);
                 } 
             }
 

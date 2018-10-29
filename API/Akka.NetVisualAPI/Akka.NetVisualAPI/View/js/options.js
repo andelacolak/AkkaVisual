@@ -10,7 +10,6 @@
                       showButton: true
                     },
                     nodes:{
-                        color: '#dddddd',
                         borderWidth: 2,
                         borderWidthSelected: 2,
                         fixed: false,
@@ -29,5 +28,5 @@
                         shadow: true,
                         smooth: true,
                       }
-                }
+                    }
             }
