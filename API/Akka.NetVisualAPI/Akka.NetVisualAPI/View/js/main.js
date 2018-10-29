@@ -36,11 +36,9 @@
             }
 
             function AddDataToGraph(logData) {
-              var sender = ExtractName(logData.Sender);
-              var receiver = ExtractName(logData.Receiver);
-              AddNode(sender, GetGroup(logData.Sender)); 
-              AddNode(receiver, GetGroup(logData.Receiver));
-              AddEdge(sender, receiver, logData.Message);
+              AddNode(logData.Sender, GetGroup(logData.Sender)); 
+              AddNode(logData.Receiver, GetGroup(logData.Receiver));
+              AddEdge(logData.Sender, logData.Receiver, logData.Message);
             }
 
             function AddDataToTimeline(logData) {
@@ -82,13 +80,15 @@
 
             //having troubles with dynamic group add
             function GetColor(group) {
+              console.log(colors[groups.indexOf(group)] + "to group" + group);
               return colors[groups.indexOf(group)];
             }
 
             function AddNode(node, group) {
+              var shortNode = ExtractName(node);
                 if(!graphData.nodes.getIds().includes(node)) {
-                    nodes.add({id: node, label: node, color: GetColor(group)});
-                    console.log(nodes);
+                    nodes.add({id: node, label: shortNode, color: GetColor(group)});
+                    console.log(node + "to group"+ group);
                 } 
             }
 
