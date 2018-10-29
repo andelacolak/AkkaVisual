@@ -1,4 +1,4 @@
- var nodes, edges, logData, graphData, timelineData, i, colors, groups;
+ var nodes, edges, network, logData, graphData, timelineData, i, colors, groups, scale;
  $(function() {
                 nodes = new vis.DataSet();
                 edges = new vis.DataSet();
@@ -6,10 +6,10 @@
                 //find a way to have infinite projects
                 colors = ["#B0A1BA", "#A5B5BF", "#ABC8C7", "#B8E2C8", "#BFF0D4"];
                 groups = [];
+                scale = 1.0;
                 DrawGraph();
                 DrawTimeline();
                 ConnectToServer();
-                
             });
 
             function DrawGraph() {
@@ -20,7 +20,7 @@
                 nodes: nodes,
                 edges: edges
               }
-              var network = new vis.Network(container, graphData, options);
+              network = new vis.Network(container, graphData, options);
             }
 
             function DrawTimeline() {
@@ -96,6 +96,27 @@
                 edges.add({from: sender, to: receiver, label: message });
             }
 
+            function Zoom(id) {
+              switch(id) {
+                case "plus":
+                  scale+=0.5;
+                  break;
+                case "minus":
+                  if(scale > 0.5) { scale-=0.5; }
+                  break;
+                default:
+                  break;
+              }
+              var scaleOption = { 
+                scale : scale,
+                animation: {         
+                  duration: 1000,                
+                  easingFunction: "easeInOutQuad" 
+                }  
+              };
+              network.moveTo(scaleOption);
+            }
+
             function ConnectToServer() {
                 i = 0;
                 //Stored reference to the hub.
@@ -112,4 +133,6 @@
                     AddDataToTimeline(data);
                     i++;
                 };
+
+                $( ".zoom-btn" ).click(function(){Zoom(this.id)});
             }

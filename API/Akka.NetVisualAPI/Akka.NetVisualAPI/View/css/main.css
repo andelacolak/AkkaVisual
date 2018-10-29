@@ -29,13 +29,18 @@
 	padding: 10px;
 }
 
-#legend {
+.network-helper {
 	height: 75%;
 	width: 100%;
 	background-color: #333;
 }
 
-#legend-title {
+.zoom-btn {
+	margin: 0 auto;
+	display: block;
+}
+
+#legend-title, #zoom {
 	color: #EEE;
 	text-align: center;
 	line-height: 100px;
@@ -50,4 +55,8 @@
 
 #mytimeline {
 	height: 100%;
+}
+
+#separator {
+	height: 10px;
 }

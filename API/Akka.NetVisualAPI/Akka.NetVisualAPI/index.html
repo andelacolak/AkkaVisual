@@ -26,6 +26,9 @@
         <!--CSS links-->
         <link rel="stylesheet" type="text/css" href="view/css/vis.min.css">
         <link rel="stylesheet" type="text/css" href="view/css/main.css">
+
+        <!--Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     </head>
 
     <body>
@@ -35,10 +38,10 @@
 
             <div class="container-fluid">
               <div class="row row-eq-height">
-                <div class="col-sm-8">
+                <div class="col-sm-7">
                   <div class="card ">
                     <div class="card-header">
-                        Basic graph
+                        Network
                     </div>
                     <div class="card-body">
                         <p class="card-text"><div id="mynetwork"></div></p>
@@ -47,8 +50,16 @@
                   <div>
                 </div>
                 </div>
+                <div class="col-sm-1">
+                    <div class="network-helper">
+                        <h2 class="display-6" id="zoom">Zoom</h1>
+                        <button class="btn btn-light btn-lg zoom-btn" id="plus"><i class="fa fa-plus" aria-hidden="false"></i></button>
+                        <div id="separator"></div>
+                        <button class="btn btn-light btn-lg zoom-btn" id="minus"><i class="fa fa-minus" aria-hidden="false"></i></button>
+                    </div>
+                </div>
                 <div class="col-sm-4">
-                    <div id="legend">
+                    <div id="legend" class="network-helper">
                         <h2 class="display-5" id="legend-title">Legend</h1>
                     </div>
                 </div>
