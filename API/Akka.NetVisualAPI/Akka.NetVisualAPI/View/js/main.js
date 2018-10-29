@@ -66,7 +66,12 @@
               console.log("groups",groups);
               if(!groups.includes(group)) {
                 groups.push(group);
+                AddGroupToLegend(group);
               }
+            }
+
+            function AddGroupToLegend(group) {
+              $("#legend").append('<h6 class="legend-content"> <span class="badge badge-secondary" style=" background-color: ' + GetColor(group) + '"> </span>' + group + '</h1>');
             }
 
             function GetGroup(fullName) {
