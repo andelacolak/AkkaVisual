@@ -98,6 +98,7 @@ namespace VCLogger
                 values["sender"] = _clock_sender.Sender;
                 values["receiver"] = _clock_sender.Receiver;
                 values["message"] = _clock_sender.Message;
+                var test = _clock_sender.Clock.ToString();
                 values["clock"] = _clock_sender.Clock.ToString();
 
                 try

@@ -1,82 +1,77 @@
 <html>
 
-    <head>
-        <title>SignalMan</title>   
+<head>
+    <title>SignalMan</title>   
 
-<!--         <script type="text/javascript" src="../../data.txt"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-        <!--Javascript-->
-        
-        <!--Bootstrap 4-->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Bootstrap 4-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        <!--SignalR -->
-        <script src="/Scripts/jquery-1.6.4.min.js"></script>
-        <script src="/Scripts/jquery.signalR-2.4.0-preview1-20180920-03.js"></script>
-        <script src="/signalr/hubs"></script>
+    <!--SignalR -->
+    <script src="/Scripts/jquery-1.6.4.min.js"></script>
+    <script src="/Scripts/jquery.signalR-2.4.0-preview1-20180920-03.js"></script>
+    <script src="/signalr/hubs"></script>
 
-        <!--Vis and custom JS -->
-        <script type="text/javascript" src="view/js/vis.min.js"></script>
-        <script type="text/javascript" src="view/js/options.js"></script>
-        <script type="text/javascript" src="view/js/main.js"></script>
+    <!--Vis and custom JS -->
+    <script type="text/javascript" src="view/js/vis.min.js"></script>
+    <script type="text/javascript" src="view/js/options.js"></script>
 
-        <!--CSS links-->
-        <link rel="stylesheet" type="text/css" href="view/css/vis.min.css">
-        <link rel="stylesheet" type="text/css" href="view/css/main.css">
+    <script type="text/javascript" src="view/js/main.js"></script>
 
-        <!--Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-    </head>
+    <!--CSS links-->
+    <link rel="stylesheet" type="text/css" href="view/css/vis.min.css">
+    <link rel="stylesheet" type="text/css" href="view/css/main.css">
 
-    <body>
-        <div class="jumbotron">
-          <h1 class="display-3">Akka.NET Visualiser</h1>
-          <p class="lead">
+    <!--Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+</head>
 
-            <div class="container-fluid">
-              <div class="row row-eq-height">
-                <div class="col-sm-7">
-                  <div class="card ">
-                    <div class="card-header">
-                        Network
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text"><div id="mynetwork"></div></p>
-                    </div>
-                  </div>
-                  <div>
-                </div>
-                </div>
-                <div class="col-sm-1">
-                    <div class="network-helper">
-                        <h2 class="display-6" id="zoom">Zoom</h1>
-                        <button class="btn btn-light btn-lg zoom-btn" id="plus"><i class="fa fa-plus" aria-hidden="false"></i></button>
-                        <div id="separator"></div>
-                        <button class="btn btn-light btn-lg zoom-btn" id="minus"><i class="fa fa-minus" aria-hidden="false"></i></button>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div id="legend" class="network-helper">
-                        <h2 class="display-5" id="legend-title">Legend</h1>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <hr class="my-4">
-            <div class="card">
+<body>
+    <div class="jumbotron">
+      <h1 class="display-3">Akka.NET Visualiser</h1>
+      <p class="lead">
+
+        <div class="container-fluid">
+          <div class="row row-eq-height">
+            <div class="col-sm-7" style="padding-right: 0px;">
+              <div class="card ">
                 <div class="card-header">
-                    Timeline
+                    Network
                 </div>
                 <div class="card-body">
-                    <p class="card-text"><div id="mytimeline"></div></p>
+                    <p class="card-text"><div id="mynetwork"></div></p>
                 </div>
-              </div>
-            </div>
-          </p>
-          <p>PMFST 2018</p>
+               </div>
         </div>
-    </body>
+        <div class="col-sm-1" style="padding-left: 0px;">
+            <div class="network-helper">
+                <h2 class="display-6" id="zoom">Zoom</h1>
+                    <button class="btn btn-light btn-lg zoom-btn" id="plus"><i class="fa fa-plus" aria-hidden="false"></i></button>
+                    <div id="separator"></div>
+                    <button class="btn btn-light btn-lg zoom-btn" id="minus"><i class="fa fa-minus" aria-hidden="false"></i></button>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div id="legend" class="network-helper">
+                    <h2 class="display-5" id="legend-title">Legend</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="card">
+            <div class="card-header">
+                Timeline
+            </div>
+            <div class="card-body">
+                <p class="card-text"><div id="mytimeline"></div></p>
+            </div>
+        </div>
+    </div>
+</p>
+<p>PMFST 2018</p>
+</div>
+</body>
 </html>
