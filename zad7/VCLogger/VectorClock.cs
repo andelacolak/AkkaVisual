@@ -52,7 +52,7 @@ namespace VCLogger
 
         public void Merge(VectorClock other)
         {
-            foreach (var el in other.Clock)
+            foreach (var el in other.Clock.ToList())
             {
                 if (Clock.ContainsKey(el.Key))
                 {

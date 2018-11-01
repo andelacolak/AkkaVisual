@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zdk01", "Zdk01\Zdk01.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VCLogger", "VCLogger\VCLogger.csproj", "{05FAB933-D9D7-4C7F-B8DD-EAABE4598D3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zad6", "..\..\..\vj4\zad6\zad6\zad6.csproj", "{643D6102-45A4-45D2-8DA4-70D3F243C8A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{05FAB933-D9D7-4C7F-B8DD-EAABE4598D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05FAB933-D9D7-4C7F-B8DD-EAABE4598D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05FAB933-D9D7-4C7F-B8DD-EAABE4598D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{643D6102-45A4-45D2-8DA4-70D3F243C8A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{643D6102-45A4-45D2-8DA4-70D3F243C8A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{643D6102-45A4-45D2-8DA4-70D3F243C8A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{643D6102-45A4-45D2-8DA4-70D3F243C8A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
