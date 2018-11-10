@@ -46,12 +46,12 @@ function AddDataToGraph(logData) {
 function AddDataToTimeline(logData) {
   var sender = logData.Sender;
   var receiver = logData.Receiver;
-  timelineData.add({id : logData.id, content: "{0} sent <br>message {1}<br>to {2}".format(sender, logData.Message, receiver), start: new Date(0,0,0,0,0,0,logData.index), className: 'green'});
+  timelineData.add({id : logData.id, content: "{0} sent <br>message {1}<br>to {2}".format(sender, logData.Message.Name, receiver), start: new Date(0,0,0,0,0,0,logData.index), className: 'green'});
 }
 
 function UpdateData(logData) {
   timelineData.update({id: logData.id, start: new Date(0,0,0,0,0,0,logData.index)});
-  edges.update({id: logData.id, label: logData.index + " - " + logData.Message});
+  edges.update({id: logData.id, label: logData.index + " - " + logData.Message.Name});
 }
 
 String.prototype.format = function() {
@@ -98,7 +98,7 @@ function AddNode(node, group) {
 
 function AddEdge(logData) {
   if(!graphData.edges.getIds().includes(logData.id)) {
-    edges.add({id: logData.id, from: logData.Sender, to: logData.Receiver, label: logData.index + " - " + logData.Message });
+    edges.add({id: logData.id, from: logData.Sender, to: logData.Receiver, label: logData.index + " - " + logData.Message.Name });
   }
 }
 
