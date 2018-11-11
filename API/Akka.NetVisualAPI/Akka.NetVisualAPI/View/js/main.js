@@ -57,10 +57,15 @@ function UpdateData(logData) {
 String.prototype.format = function() {
   a = this;
   for (k in arguments) {
-    a = a.replace("{" + k + "}", arguments[k])
+    a = a.replaceAll("{" + k + "}", arguments[k])
   }
   return a
 }
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
 
 function ExtractName(fullName) {
   var fullNameArray = fullName.split("/");
@@ -98,7 +103,7 @@ function AddNode(node, group) {
 
 function AddEdge(logData) {
   if(!graphData.edges.getIds().includes(logData.id)) {
-    edges.add({id: logData.id, from: logData.Sender, to: logData.Receiver, label: logData.index + " - " + logData.Message.Name });
+    edges.add({id: logData.id, from: logData.Sender, to: logData.Receiver, label: logData.index + " - " + logData.Message.Name, title: FormatProps(logData.Message.Props)});
   }
 }
 
@@ -214,6 +219,14 @@ function AddIndexes(data) {
 
 function AddID(data) {
   data["id"] = new Date().getTime() * 10000 + 621355968000000000;
+}
+
+function FormatProps(props) {
+  var result = "";
+  Object.keys(props).forEach(function(k){
+      result += "<p>{0} - {1}</p>".format(k, props[k]);
+  });
+  return result;
 }
 
 function ConnectToServer() {

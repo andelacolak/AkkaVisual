@@ -40,6 +40,10 @@
 	display: block;
 }
 
+.table {
+	margin: 0px;
+}
+
 #legend-title, #zoom {
 	color: #EEE;
 	text-align: center;
@@ -59,4 +63,9 @@
 
 #separator {
 	height: 10px;
+}
+
+#messagesDetails {
+	padding: 0px;
+	margin:  0px;
 }

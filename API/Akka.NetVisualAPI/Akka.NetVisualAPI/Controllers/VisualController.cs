@@ -14,7 +14,6 @@ namespace Akka.NetVisualAPI.Controllers
         [HttpPost]
         public HttpStatusCode SaveVectorClock([FromBody] JObject vectorClock)
         {
-
             var vc = QuickDeserializer.Deserialize(vectorClock);
             VectorClockHolder.SetVectorClock(vc);
 
