@@ -229,6 +229,11 @@ function FormatProps(props) {
   return result;
 }
 
+function  HideLoading() {
+  $("#modal").fadeOut("slow");
+  $(".jumbotron").removeClass("blur").addClass("unblur");
+}
+
 function ConnectToServer() {
   //Stored reference to the hub.
   var visualHub = $.connection.visualHub;
@@ -240,6 +245,7 @@ function ConnectToServer() {
   });
 
   visualHub.client.broadcastMessage = function (data) {
+    HideLoading();
     console.log(data);
     AddID(data);
     AddIndexes(data);
