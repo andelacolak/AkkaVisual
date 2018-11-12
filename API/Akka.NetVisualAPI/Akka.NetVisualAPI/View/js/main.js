@@ -30,6 +30,7 @@ function DrawTimeline() {
   var timelineContainer = document.getElementById('mytimeline');
   timelineData = new vis.DataSet([]);
   var options = {
+    height: "50%",
     editable: true,
     start: new Date(0,0,0,0,0,0,0),
     end: new Date(0,0,0,0,0,0,2)
