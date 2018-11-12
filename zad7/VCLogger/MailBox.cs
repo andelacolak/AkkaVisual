@@ -5,6 +5,7 @@ using Akka.Dispatch.MessageQueues;
 using System.Collections.Specialized;
 using System.Net;
 using System.Text;
+using VCLogger.VCFolder;
 
 namespace VCLogger
 {
@@ -44,9 +45,11 @@ namespace VCLogger
 
         public void Enqueue(IActorRef receiver, Envelope envelope)
         {
-            OnSend(receiver, envelope);
+            VCMessage message = GetMessage(envelope);
 
-            OnReceive(receiver, envelope);
+            OnSend(receiver, envelope.Sender, message);
+
+            OnReceive(receiver, envelope.Sender, message);
 
             SendToAPI();
 
@@ -58,29 +61,43 @@ namespace VCLogger
             return _messageQueue.TryDequeue(out envelope);
         }
 
-        private void OnSend(IActorRef receiver, Envelope envelope)
+        private VCMessage GetMessage(Envelope envelope)
         {
-            _clock_sender = VectorClockHelper.GetVectorClock(envelope.Sender.Path.ToString());
+            VCMessage message = new VCMessage(envelope.Message.GetType().Name);
+            var props = envelope.Message.GetType().GetProperties();
 
-            _clock_sender.Update(
-               envelope.Sender.Path.ToString(),
-               receiver.Path.ToString(),
-               envelope.Message.GetType().Name
-               );
+            foreach (var prop in props)
+            {
+                var value = envelope.Message.GetType().GetProperty(prop.Name).GetValue(envelope.Message);
+                message.AddProp(prop.Name, value.ToString());
+            }
 
-            _clock_sender.Tick(envelope.Sender.Path.ToString());
-
-            VectorClockHelper.Update(envelope.Sender.Path.ToString(), _clock_sender);
+            return message;
         }
 
-        private void OnReceive(IActorRef receiver, Envelope envelope)
+        private void OnSend(IActorRef receiver, IActorRef sender, VCMessage message)
+        {
+            _clock_sender = VectorClockHelper.GetVectorClock(sender.Path.ToString());
+
+            _clock_sender.Update(
+               sender.Path.ToString(),
+               receiver.Path.ToString(),
+               message
+               );
+
+            _clock_sender.Tick(sender.Path.ToString());
+
+            VectorClockHelper.Update(sender.Path.ToString(), _clock_sender);
+        }
+
+        private void OnReceive(IActorRef receiver, IActorRef sender, VCMessage message)
         {
             _clock_receiver = VectorClockHelper.GetVectorClock(receiver.Path.ToString());
 
             _clock_receiver.Update(
-               envelope.Sender.Path.ToString(),
+               sender.Path.ToString(),
                receiver.Path.ToString(),
-               envelope.Message.GetType().Name
+               message
                );
             
             _clock_receiver.Merge(_clock_sender);
@@ -94,12 +111,7 @@ namespace VCLogger
         {
             using (var client = new WebClient())
             {
-                var values = new NameValueCollection();
-                values["sender"] = _clock_sender.Sender;
-                values["receiver"] = _clock_sender.Receiver;
-                values["message"] = _clock_sender.Message;
-                var test = _clock_sender.Clock.ToString();
-                values["clock"] = _clock_sender.Clock.ToString();
+                var values = QuickSerializer.Serialize(_clock_sender);
 
                 try
                 {

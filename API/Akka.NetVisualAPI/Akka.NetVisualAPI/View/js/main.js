@@ -30,6 +30,7 @@ function DrawTimeline() {
   var timelineContainer = document.getElementById('mytimeline');
   timelineData = new vis.DataSet([]);
   var options = {
+    height: "50%",
     editable: true,
     start: new Date(0,0,0,0,0,0,0),
     end: new Date(0,0,0,0,0,0,2)
@@ -46,21 +47,26 @@ function AddDataToGraph(logData) {
 function AddDataToTimeline(logData) {
   var sender = logData.Sender;
   var receiver = logData.Receiver;
-  timelineData.add({id : logData.id, content: "{0} sent <br>message {1}<br>to {2}".format(sender, logData.Message, receiver), start: new Date(0,0,0,0,0,0,logData.index), className: 'green'});
+  timelineData.add({id : logData.id, content: "{0} sent <br>message {1}<br>to {2}".format(sender, logData.Message.Name, receiver), start: new Date(0,0,0,0,0,0,logData.index), className: 'green'});
 }
 
 function UpdateData(logData) {
   timelineData.update({id: logData.id, start: new Date(0,0,0,0,0,0,logData.index)});
-  edges.update({id: logData.id, label: logData.index + " - " + logData.Message});
+  edges.update({id: logData.id, label: logData.index + " - " + logData.Message.Name});
 }
 
 String.prototype.format = function() {
   a = this;
   for (k in arguments) {
-    a = a.replace("{" + k + "}", arguments[k])
+    a = a.replaceAll("{" + k + "}", arguments[k])
   }
   return a
 }
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
 
 function ExtractName(fullName) {
   var fullNameArray = fullName.split("/");
@@ -98,7 +104,7 @@ function AddNode(node, group) {
 
 function AddEdge(logData) {
   if(!graphData.edges.getIds().includes(logData.id)) {
-    edges.add({id: logData.id, from: logData.Sender, to: logData.Receiver, label: logData.index + " - " + logData.Message });
+    edges.add({id: logData.id, from: logData.Sender, to: logData.Receiver, label: logData.index + " - " + logData.Message.Name, title: FormatProps(logData.Message.Props)});
   }
 }
 
@@ -216,6 +222,19 @@ function AddID(data) {
   data["id"] = new Date().getTime() * 10000 + 621355968000000000;
 }
 
+function FormatProps(props) {
+  var result = "";
+  Object.keys(props).forEach(function(k){
+      result += "<p>{0} - {1}</p>".format(k, props[k]);
+  });
+  return result;
+}
+
+function  HideLoading() {
+  $("#modal").fadeOut("slow");
+  $(".jumbotron").removeClass("blur").addClass("unblur");
+}
+
 function ConnectToServer() {
   //Stored reference to the hub.
   var visualHub = $.connection.visualHub;
@@ -227,6 +246,7 @@ function ConnectToServer() {
   });
 
   visualHub.client.broadcastMessage = function (data) {
+    HideLoading();
     console.log(data);
     AddID(data);
     AddIndexes(data);
