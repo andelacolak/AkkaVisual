@@ -3,7 +3,9 @@ using Akka.Configuration;
 using Akka.Dispatch;
 using Akka.Dispatch.MessageQueues;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using VCLogger.VCFolder;
 
@@ -48,7 +50,8 @@ namespace VCLogger
             VCMessage message = GetMessage(envelope);
 
             OnSend(receiver, envelope.Sender, message);
-
+            var a = receiver.GetType().FullName;
+            var b = receiver.GetType().GetProperties().Select(x => x.Name);
             OnReceive(receiver, envelope.Sender, message);
 
             SendToAPI();

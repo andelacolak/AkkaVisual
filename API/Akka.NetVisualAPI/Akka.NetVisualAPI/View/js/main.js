@@ -241,8 +241,6 @@ function ConnectToServer() {
   //Initialize the connection.
   $.connection.hub.start().done(function () {
     console.log("success");
-    //call server
-    visualHub.server.send();
   });
 
   visualHub.client.broadcastMessage = function (data) {

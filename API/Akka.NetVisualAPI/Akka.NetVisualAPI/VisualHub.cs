@@ -10,21 +10,8 @@ using System.Diagnostics;
 
 namespace Akka.NetVisualAPI
 {
-    //[HubName("visual")]
     public class VisualHub : Hub
     {
-        private VectorClock _previousValue;
-
-        public async Task Send()
-        {
-            while (true)
-            {
-                if (_previousValue != VectorClockHolder.GetVectorClock())
-                {
-                    await Clients.All.broadcastMessage(VectorClockHolder.GetVectorClock());
-                    _previousValue = VectorClockHolder.GetVectorClock();
-                }
-            }
-        }
+        //this.Context.Request.
     }
 }
