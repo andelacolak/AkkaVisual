@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -80,5 +81,17 @@ namespace VCLogger
             }
         }
         #endregion
-    } 
+
+        #region To Byte Array
+        public byte[] ToByteArray()
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                bf.Serialize(ms, this);
+                return ms.ToArray();
+            }
+        }
+        #endregion
+    }
 }

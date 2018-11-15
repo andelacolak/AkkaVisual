@@ -3,8 +3,10 @@ using Akka.Configuration;
 using Akka.Dispatch;
 using Akka.Dispatch.MessageQueues;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using VCLogger.VCFolder;
@@ -102,7 +104,7 @@ namespace VCLogger
                receiver.Path.ToString(),
                message
                );
-            
+
             _clock_receiver.Merge(_clock_sender);
 
             _clock_receiver.Tick(receiver.Path.ToString());
@@ -112,19 +114,21 @@ namespace VCLogger
 
         private void SendToAPI()
         {
-            using (var client = new WebClient())
+            try
             {
-                var values = QuickSerializer.Serialize(_clock_sender);
-
-                try
-                {
-                    var response = client.UploadValues("http://localhost:51510/api/vector_clock/save", values);
-                    var responseString = Encoding.Default.GetString(response);
-                }
-                catch
-                {
-                    System.Diagnostics.Debug.WriteLine("[ERROR] Visualisation API connection has failed.");
-                }
+                var request = WebRequest.Create("http://localhost:51510/api/vector_clock/save");
+                request.Credentials = CredentialCache.DefaultCredentials;
+                ((HttpWebRequest)request).UserAgent = "Akka.NET Visualiser";
+                request.Method = "POST";
+                request.ContentLength = _clock_sender.ToByteArray().Length;
+                request.ContentType = "application/x-www-form-urlencoded";
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(_clock_sender.ToByteArray(), 0, _clock_sender.ToByteArray().Length);
+                dataStream.Close();
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine("[ERROR] Visualisation API connection has failed.");
             }
         }
     }
