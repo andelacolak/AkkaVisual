@@ -13,6 +13,10 @@
   DrawGraph();
   DrawTimeline();
   ConnectToServer();
+
+  $( window ).unload(function() {
+    $.connection.hub.stop();
+  });
 });
 
  function DrawGraph() {

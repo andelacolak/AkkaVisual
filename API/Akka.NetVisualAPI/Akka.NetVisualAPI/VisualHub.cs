@@ -12,6 +12,5 @@ namespace Akka.NetVisualAPI
 {
     public class VisualHub : Hub
     {
-        //this.Context.Request.
     }
 }
