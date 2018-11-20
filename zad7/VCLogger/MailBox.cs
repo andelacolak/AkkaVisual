@@ -49,7 +49,7 @@ namespace VCLogger
         public void Enqueue(IActorRef receiver, Envelope envelope)
         {
             VCMessage message = GetMessage(envelope);
-            VCActor senderActor = new VCActor(envelope.Sender.Path.ToString(), GetActorType(envelope. Sender));
+            VCActor senderActor = new VCActor(envelope.Sender.Path.ToString(), GetActorType(envelope.Sender));
             VCActor receiverActor = new VCActor(receiver.Path.ToString(), GetActorType(receiver));
 
             OnSend(receiverActor, senderActor, message);
@@ -82,10 +82,15 @@ namespace VCLogger
 
         private string GetActorType(IActorRef actor)
         {
-            if (actor.GetType().GetField("Props", bindingFlags) == null) return null;
-            var props = actor.GetType().GetField("Props", bindingFlags).GetValue(actor);
+            object props;
+
+            if (actor.GetType().GetField("Props", bindingFlags) != null)
+                props = actor.GetType().GetField("Props", bindingFlags).GetValue(actor);
+            else if (actor.GetType().GetProperty("Props", bindingFlags) != null)
+                props = actor.GetType().GetProperty("Props", bindingFlags).GetValue(actor);
+            else return null;
+
             var type = props.GetType().GetProperty("TypeName", bindingFlags).GetValue(props);
-            //var result = "zad6.MainActor, zad6, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
             return type.ToString().Split(',')[0];
         }
 

@@ -17,7 +17,7 @@ namespace VCLogger.VCFolder
         public VCActor(string path, string type)
         {
             Path = path;
-            Type = type == null ? "" : type;
+            Type = type == null ? "Unknown" : type;
         }
 
         public override string ToString()

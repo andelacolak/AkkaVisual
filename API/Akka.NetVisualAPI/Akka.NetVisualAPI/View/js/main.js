@@ -44,7 +44,7 @@ function DrawTimeline() {
 
 function AddDataToGraph(logData) {
   AddNode(logData.sender.path, GetGroup(logData.sender.path), logData.sender.type); 
-  AddNode(logData.receiver.path, GetGroup(logData.receiver.path), logData.sender.type);
+  AddNode(logData.receiver.path, GetGroup(logData.receiver.path), logData.receiver.type);
   AddEdge(logData);
 }
 
