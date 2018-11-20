@@ -147,6 +147,7 @@ function HappenedBefore(newClock, oldClock) {
 function HappenedAfter(newClock, oldClock) {
   var boolean = true;
   $.each( newClock.clock, function( key, value ) {
+    //newClock.clock[key] = parseInt(newClock.clock[key]);
     if(value < oldClock.clock[key]) { 
       boolean = false;
       return boolean;
@@ -169,6 +170,7 @@ function FillMissingKeys(data) {
 
 function AddToGlobalKeyList(data) {
   for(var key in data.clock) {
+    data.clock[key] = parseInt(data.clock[key]);
     if(keysList.indexOf(key) == -1) {
       keysList.push(key);
     }
@@ -248,7 +250,7 @@ function ConnectToServer() {
   });
 
   visualHub.client.broadcastMessage = function (data) {
-    HideLoading();
+    //HideLoading();
     console.log(data);
     AddID(data);
     AddIndexes(data);
