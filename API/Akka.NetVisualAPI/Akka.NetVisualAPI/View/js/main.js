@@ -43,20 +43,20 @@ function DrawTimeline() {
 }
 
 function AddDataToGraph(logData) {
-  AddNode(logData.Sender, GetGroup(logData.Sender)); 
-  AddNode(logData.Receiver, GetGroup(logData.Receiver));
+  AddNode(logData.sender.path, GetGroup(logData.sender.path), logData.sender.type); 
+  AddNode(logData.receiver.path, GetGroup(logData.receiver.path), logData.sender.type);
   AddEdge(logData);
 }
 
 function AddDataToTimeline(logData) {
-  var sender = logData.Sender;
-  var receiver = logData.Receiver;
-  timelineData.add({id : logData.id, content: "{0} sent <br>message {1}<br>to {2}".format(sender, logData.Message.Name, receiver), start: new Date(0,0,0,0,0,0,logData.index), className: 'green'});
+  var sender = logData.sender.path;
+  var receiver = logData.receiver.path;
+  timelineData.add({id : logData.id, content: "{0} sent <br>message {1}<br>to {2}".format(sender, logData.message.name, receiver), start: new Date(0,0,0,0,0,0,logData.index), className: 'green'});
 }
 
 function UpdateData(logData) {
   timelineData.update({id: logData.id, start: new Date(0,0,0,0,0,0,logData.index)});
-  edges.update({id: logData.id, label: logData.index + " - " + logData.Message.Name});
+  edges.update({id: logData.id, label: logData.index + " - " + logData.message.name});
 }
 
 String.prototype.format = function() {
@@ -99,16 +99,16 @@ function GetColor(group) {
   return colors[groups.indexOf(group)];
 }
 
-function AddNode(node, group) {
+function AddNode(node, group, type) {
   var shortNode = ExtractName(node);
   if(!graphData.nodes.getIds().includes(node)) {
-    nodes.add({id: node, label: shortNode, color: GetColor(group)});
+    nodes.add({id: node, label: shortNode, color: GetColor(group), title: type});
   } 
 }
 
 function AddEdge(logData) {
   if(!graphData.edges.getIds().includes(logData.id)) {
-    edges.add({id: logData.id, from: logData.Sender, to: logData.Receiver, label: logData.index + " - " + logData.Message.Name, title: FormatProps(logData.Message.Props)});
+    edges.add({id: logData.id, from: logData.sender.path, to: logData.receiver.path, label: logData.index + " - " + logData.message.name, title: FormatProps(logData.message.props)});
   }
 }
 
@@ -135,8 +135,8 @@ function Zoom(id) {
 
 function HappenedBefore(newClock, oldClock) {
   var boolean = true;
-  $.each( newClock.Clock, function( key, value ) {
-    if(value > oldClock.Clock[key]) { 
+  $.each( newClock.clock, function( key, value ) {
+    if(value > oldClock.clock[key]) { 
       boolean = false;
       return boolean;
     }
@@ -146,8 +146,8 @@ function HappenedBefore(newClock, oldClock) {
 
 function HappenedAfter(newClock, oldClock) {
   var boolean = true;
-  $.each( newClock.Clock, function( key, value ) {
-    if(value < oldClock.Clock[key]) { 
+  $.each( newClock.clock, function( key, value ) {
+    if(value < oldClock.clock[key]) { 
       boolean = false;
       return boolean;
     }
@@ -161,14 +161,14 @@ function Concurrent(newClock, oldClock) {
 
 function FillMissingKeys(data) {
   keysList.forEach(function(value) {
-    if(!(value in data.Clock)) {
-      data.Clock[value] =  0;
+    if(!(value in data.clock)) {
+      data.clock[value] =  0;
     }
   });
 }
 
 function AddToGlobalKeyList(data) {
-  for(var key in data.Clock) {
+  for(var key in data.clock) {
     if(keysList.indexOf(key) == -1) {
       keysList.push(key);
     }

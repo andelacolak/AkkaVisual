@@ -13,5 +13,10 @@ namespace VCLogger.VCFolder
         public VCClock() : base() { }
 
         public VCClock(SerializationInfo info, StreamingContext context) : base(info, context) { }
+
+        public override string ToString()
+        {
+            return string.Join("\", \"", this.Select(kv => kv.Key + "\": \"" + kv.Value.ToString()).ToArray());
+        }
     }
 }

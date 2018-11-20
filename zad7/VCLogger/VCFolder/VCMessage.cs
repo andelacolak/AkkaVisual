@@ -22,5 +22,11 @@ namespace VCLogger.VCFolder
         {
             Props.Add(key, value);
         }
+
+        public override string ToString()
+        {
+            return string.Format("\"name\": \"{0}\", \"props\": {{ \"{1}\" }}", Name,
+                string.Join("\", \"", Props.Select(kv => kv.Key + "\": \"" + kv.Value.ToString()).ToArray()));
+        }
     }
 }

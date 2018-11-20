@@ -125,15 +125,11 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\VisualController.cs" />
-    <Compile Include="Deserializer\QuickDeserializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\VCMessage.cs" />
-    <Compile Include="Models\VectorClock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="VectorClockHolder.cs" />
     <Compile Include="VisualHub.cs" />
   </ItemGroup>
   <ItemGroup>

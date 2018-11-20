@@ -2,11 +2,8 @@
 using Akka.Configuration;
 using Akka.Dispatch;
 using Akka.Dispatch.MessageQueues;
-using System.Collections.Specialized;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using VCLogger.VCFolder;
@@ -28,6 +25,8 @@ namespace VCLogger
 
     class VisualMailbox : IMessageQueue, IUnboundedMessageQueueSemantics, IMultipleConsumerSemantics
     {
+        private const BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+
         private VectorClock _clock_sender = new VectorClock();
         private VectorClock _clock_receiver = new VectorClock();
 
@@ -50,11 +49,12 @@ namespace VCLogger
         public void Enqueue(IActorRef receiver, Envelope envelope)
         {
             VCMessage message = GetMessage(envelope);
+            VCActor senderActor = new VCActor(envelope.Sender.Path.ToString(), GetActorType(envelope. Sender));
+            VCActor receiverActor = new VCActor(receiver.Path.ToString(), GetActorType(receiver));
 
-            OnSend(receiver, envelope.Sender, message);
-            var a = receiver.GetType().FullName;
-            var b = receiver.GetType().GetProperties().Select(x => x.Name);
-            OnReceive(receiver, envelope.Sender, message);
+            OnSend(receiverActor, senderActor, message);
+
+            OnReceive(receiverActor, senderActor, message);
 
             SendToAPI();
 
@@ -80,13 +80,22 @@ namespace VCLogger
             return message;
         }
 
-        private void OnSend(IActorRef receiver, IActorRef sender, VCMessage message)
+        private string GetActorType(IActorRef actor)
+        {
+            if (actor.GetType().GetField("Props", bindingFlags) == null) return null;
+            var props = actor.GetType().GetField("Props", bindingFlags).GetValue(actor);
+            var type = props.GetType().GetProperty("TypeName", bindingFlags).GetValue(props);
+            //var result = "zad6.MainActor, zad6, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+            return type.ToString().Split(',')[0];
+        }
+
+        private void OnSend(VCActor receiver, VCActor sender, VCMessage message)
         {
             _clock_sender = VectorClockHelper.GetVectorClock(sender.Path.ToString());
 
             _clock_sender.Update(
-               sender.Path.ToString(),
-               receiver.Path.ToString(),
+               sender,
+               receiver,
                message
                );
 
@@ -95,13 +104,13 @@ namespace VCLogger
             VectorClockHelper.Update(sender.Path.ToString(), _clock_sender);
         }
 
-        private void OnReceive(IActorRef receiver, IActorRef sender, VCMessage message)
+        private void OnReceive(VCActor receiver, VCActor sender, VCMessage message)
         {
             _clock_receiver = VectorClockHelper.GetVectorClock(receiver.Path.ToString());
 
             _clock_receiver.Update(
-               sender.Path.ToString(),
-               receiver.Path.ToString(),
+               sender,
+               receiver,
                message
                );
 
@@ -116,14 +125,15 @@ namespace VCLogger
         {
             try
             {
+                var byteArray = Encoding.ASCII.GetBytes(_clock_sender.ToString());
                 var request = WebRequest.Create("http://localhost:51510/api/vector_clock/save");
                 request.Credentials = CredentialCache.DefaultCredentials;
                 ((HttpWebRequest)request).UserAgent = "Akka.NET Visualiser";
                 request.Method = "POST";
-                request.ContentLength = _clock_sender.ToByteArray().Length;
+                request.ContentLength = byteArray.Length;
                 request.ContentType = "application/x-www-form-urlencoded";
                 Stream dataStream = request.GetRequestStream();
-                dataStream.Write(_clock_sender.ToByteArray(), 0, _clock_sender.ToByteArray().Length);
+                dataStream.Write(byteArray, 0, byteArray.Length);
                 dataStream.Close();
             }
             catch

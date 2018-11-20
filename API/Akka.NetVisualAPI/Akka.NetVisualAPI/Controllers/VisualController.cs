@@ -1,23 +1,27 @@
-﻿using Akka.NetVisualAPI.Deserializer;
-using Akka.NetVisualAPI.Models;
+﻿using Microsoft.AspNet.SignalR;
 using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Akka.NetVisualAPI.Controllers
 {
     public class VisualController : ApiController
     {
+        private static IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<VisualHub>();
+
         [HttpPost]
         public HttpStatusCode SaveVectorClock([FromBody] JObject vectorClock)
         {
-            var vc = QuickDeserializer.Deserialize(vectorClock);
-            VectorClockHolder.SetVectorClock(vc);
+            JObject json = JObject.Parse(vectorClock.First.Path);
+            UpdateClient(json).Wait();
 
             return HttpStatusCode.OK;
+        }
+
+        private static async Task UpdateClient(JObject json)
+        {
+            await hubContext.Clients.All.broadcastMessage(json);
         }
     }
 }
