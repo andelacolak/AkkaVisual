@@ -35,7 +35,7 @@
 	background-color: #333;
 }
 
-.zoom-btn {
+.center {
 	margin: 0 auto;
 	display: block;
 }
@@ -57,7 +57,11 @@
     padding: 0px;
 }
 
-#separator {
+#separator-lg {
+	height: 30px;
+}
+
+#separator-sm {
 	height: 10px;
 }
 

@@ -133,6 +133,25 @@ function Zoom(id) {
   network.moveTo(scaleOption);
 }
 
+function RePlay() {
+  EmptyGraph();
+  DrawGraph();
+  $.each( listOfVectorClocks, function( index, value ) {
+    ScaledTimeout(index, value);
+  });
+}
+
+function ScaledTimeout(i, value) {
+  setTimeout(function() {
+    AddDataToGraph(value);
+  }, i * 1000);
+}
+
+function EmptyGraph() {
+  nodes = new vis.DataSet();
+  edges = new vis.DataSet();
+}
+
 function HappenedBefore(newClock, oldClock) {
   var boolean = true;
   $.each( newClock.clock, function( key, value ) {
@@ -257,4 +276,5 @@ function ConnectToServer() {
   };
 
   $( ".zoom-btn" ).click(function(){Zoom(this.id)});
+  $( "#redo" ).click(function(){RePlay()});
 }
