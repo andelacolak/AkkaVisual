@@ -2,14 +2,31 @@
 	margin: 10px;
 }
 
+.container-fluid {
+	padding: 0px;
+}
+
+.jumbotron {
+	background-image: url(../img/pexels-photo-1483937.jpeg);
+    background-size: cover;
+}
+
+.display-3 {
+	font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.4;
+    color: white;
+}
+
 .labelset .inner {
   height: 100px;
 }
 
 .vis-item.vis-box.green {
-	background-color: #B0A1BA;
-	border-color: #8A7B94;
+	background-color: #695540;
+	border-color: #695540;
 	border-width: 1px;
+	color: white;
 }
 
 .vis-item.vis-selected {
@@ -30,7 +47,7 @@
 }
 
 .network-helper {
-	height: 75%;
+	height: 76.5%;
 	width: 100%;
 	background-color: #333;
 }
@@ -42,6 +59,19 @@
 
 .table {
 	margin: 0px;
+}
+
+.light-opaque {
+	background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.dark-opaque {
+	background-color: rgba(32, 27, 23, 0.98) !important;
+	border-radius: .25rem;
+}
+
+.card-header {
+	background-color: rgba(255, 255, 255, 1) !important;
 }
 
 #legend-title, #zoom {

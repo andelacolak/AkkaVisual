@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;

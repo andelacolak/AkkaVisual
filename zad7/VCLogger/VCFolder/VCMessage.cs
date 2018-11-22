@@ -25,8 +25,18 @@ namespace VCLogger.VCFolder
 
         public override string ToString()
         {
-            return string.Format("\"name\": \"{0}\", \"props\": {{ \"{1}\" }}", Name,
-                string.Join("\", \"", Props.Select(kv => kv.Key + "\": \"" + kv.Value.ToString()).ToArray()));
+            return string.Format("\"name\": \"{0}\", \"props\": {{ \"{1}\" }}", Name, SerializeProps());
+        }
+
+        private string SerializeProps()
+        {
+            return Props.Count() > 0 ? string.Join("\", \"", Props.Select(kv => kv.Key + "\": \"" +
+                PrepToEncode(kv.Value.ToString())).ToArray()) : "data\": \"NONE";
+        }
+
+        private string PrepToEncode(string prop)
+        {
+            return prop.Replace("[", "").Replace("]", "").Replace("=", ":");
         }
     }
 }

@@ -5,7 +5,8 @@
   edges = new vis.DataSet();
   //different colors for different projects
   //find a way to have infinite projects
-  colors = ["#B0A1BA", "#A5B5BF", "#ABC8C7", "#B8E2C8", "#BFF0D4"];
+  //colors = ["#B0A1BA", "#ABC8C7", "#B8E2C8", "#BFF0D4"];
+  colors = ["#695540", "#772833", "#4C2646", "#444444"];
   groups = [];
   scale = 1.0;
   keysList = [];
@@ -101,9 +102,14 @@ function GetColor(group) {
 
 function AddNode(node, group, type) {
   var shortNode = ExtractName(node);
+  if(shortNode.length > 20) {shortNode = NewLine(shortNode)}
   if(!graphData.nodes.getIds().includes(node)) {
-    nodes.add({id: node, label: shortNode, color: GetColor(group), title: type});
+    nodes.add({id: node, label: shortNode, color: GetColor(group), title: type, font: {color: "white"}});
   } 
+}
+
+function NewLine(str) {
+  return str.slice(0, Math.round(str.length/2)) + "- \n" + str.slice(Math.round(str.length/2), str.length);
 }
 
 function AddEdge(logData) {
@@ -277,4 +283,5 @@ function ConnectToServer() {
 
   $( ".zoom-btn" ).click(function(){Zoom(this.id)});
   $( "#redo" ).click(function(){RePlay()});
+  $('[data-toggle="tooltip"]').tooltip()
 }

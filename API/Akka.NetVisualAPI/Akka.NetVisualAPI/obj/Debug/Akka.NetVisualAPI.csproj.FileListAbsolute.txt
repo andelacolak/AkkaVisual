@@ -38,3 +38,9 @@ C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\Mai
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\bin\Microsoft.Owin.Security.xml
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\obj\Debug\Akka.NetVisualAPI.csprojResolveAssemblyReference.cache
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\bin\System.Web.Razor.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\bin\System.Web.WebPages.Razor.dll
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\bin\System.Web.Razor.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\bin\System.Web.WebPages.Razor.xml

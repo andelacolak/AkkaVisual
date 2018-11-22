@@ -2,6 +2,7 @@
 using Akka.Configuration;
 using Akka.Dispatch;
 using Akka.Dispatch.MessageQueues;
+using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
@@ -73,8 +74,13 @@ namespace VCLogger
 
             foreach (var prop in props)
             {
-                var value = envelope.Message.GetType().GetProperty(prop.Name).GetValue(envelope.Message);
-                message.AddProp(prop.Name, value.ToString());
+                try
+                {
+                    var value = envelope.Message.GetType().GetProperty(prop.Name).GetValue(envelope.Message);
+                    if (value == null) { throw new Exception(); }
+                    message.AddProp(prop.Name, value.ToString());
+                }
+                catch { message.AddProp(prop.Name, "");}
             }
 
             return message;
@@ -84,14 +90,24 @@ namespace VCLogger
         {
             object props;
 
-            if (actor.GetType().GetField("Props", bindingFlags) != null)
+            if (IsField(actor))
                 props = actor.GetType().GetField("Props", bindingFlags).GetValue(actor);
-            else if (actor.GetType().GetProperty("Props", bindingFlags) != null)
+            else if (IsProp(actor))
                 props = actor.GetType().GetProperty("Props", bindingFlags).GetValue(actor);
             else return null;
 
             var type = props.GetType().GetProperty("TypeName", bindingFlags).GetValue(props);
             return type.ToString().Split(',')[0];
+        }
+
+        private bool IsField(IActorRef actor)
+        {
+            return actor.GetType().GetField("Props", bindingFlags) != null;
+        }
+
+        private bool IsProp(IActorRef actor)
+        {
+            return actor.GetType().GetProperty("Props", bindingFlags) != null;
         }
 
         private void OnSend(VCActor receiver, VCActor sender, VCMessage message)
@@ -130,7 +146,8 @@ namespace VCLogger
         {
             try
             {
-                var byteArray = Encoding.ASCII.GetBytes(_clock_sender.ToString());
+                //var byteArray = Encoding.GetEncoding("iso-8859-1").GetBytes(str);
+                var byteArray = Encoding.Default.GetBytes(_clock_sender.ToString());
                 var request = WebRequest.Create("http://localhost:51510/api/vector_clock/save");
                 request.Credentials = CredentialCache.DefaultCredentials;
                 ((HttpWebRequest)request).UserAgent = "Akka.NET Visualiser";
