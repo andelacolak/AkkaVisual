@@ -7,6 +7,8 @@ function AddIndexes(data) {
   } 
   else {
     var happenedBefore = false;
+    //for those who had to find happened before in deeper iterations
+    var step = 0;
     for (var i = listOfVectorClocks.length - 1; i >= 0 ; i--) {
       var item = listOfVectorClocks[i];
       FillMissingKeys(item);
@@ -14,15 +16,17 @@ function AddIndexes(data) {
       if(HappenedAfter(data, item)) {
         data["index"] = item["index"] + 1;
         listOfVectorClocks.splice(i + 1, 0, data);
-        if (happenedBefore) { MoveBiggerVectorClocks(i + 2); }
+        if (happenedBefore) { MoveBiggerVectorClocks(i + 2 + step); }
         break;
       }
       else if(Concurrent(data, item)) {
+        if(SameIndexExists(i)) {
+          step++;
+          continue;
+        }
+
         data["index"] = item["index"];
         listOfVectorClocks.splice(i, 0, data);
-        //ako ovi isprid njega ima isti id ka i on provjerit i njega
-        //ako je on  zadnji stavit concurrent
-        //ako isprid njega ima manji index od njega isto stavit concurrent
         break;
       } 
       else {
@@ -38,7 +42,15 @@ function AddIndexes(data) {
   }
   AddDataToGraph(data);
   AddDataToTimeline(data);
-  //insert to list
+}
+
+function SameIndexExists(i) {
+  if(i != 0 ) {
+    var currentIndex = listOfVectorClocks[i]["index"];
+    var previousIndex = listOfVectorClocks[i]["index"];
+    if(currentIndex == previousIndex) return true;
+  }
+  return false;
 }
 
 function HappenedBefore(newClock, oldClock) {
