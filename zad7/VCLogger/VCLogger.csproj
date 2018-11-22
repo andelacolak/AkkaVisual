@@ -57,7 +57,7 @@
   <ItemGroup>
     <Compile Include="MailBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuickSerializer.cs" />
+    <Compile Include="VCFolder\VCActor.cs" />
     <Compile Include="VCFolder\VCClock.cs" />
     <Compile Include="VCFolder\VCMessage.cs" />
     <Compile Include="VCFolder\VectorClock.cs" />

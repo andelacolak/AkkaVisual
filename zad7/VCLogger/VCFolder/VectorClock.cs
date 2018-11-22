@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Akka.Actor;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -10,8 +12,8 @@ namespace VCLogger
     [Serializable]
     public class VectorClock
     {
-        public string Sender { get; private set; }
-        public string Receiver { get; private set; }
+        public VCActor Sender { get; private set; }
+        public VCActor Receiver { get; private set; }
         public VCMessage Message { get; private set; }
         public VCClock Clock { get; private set; }
 
@@ -24,7 +26,7 @@ namespace VCLogger
             Clock = new VCClock();
         }
 
-        public VectorClock(string sender, string receiver, VCMessage message, VCClock clock)
+        public VectorClock(VCActor sender, VCActor receiver, VCMessage message, VCClock clock)
         {
             Sender = sender;
             Receiver = receiver;
@@ -44,7 +46,7 @@ namespace VCLogger
             Clock[name]++;
         }
 
-        public void Update(string sender, string receiver, VCMessage message)
+        public void Update(VCActor sender, VCActor receiver, VCMessage message)
         {
             Sender = sender;
             Receiver = receiver;
@@ -80,5 +82,14 @@ namespace VCLogger
             }
         }
         #endregion
-    } 
+
+        public override string ToString()
+        {
+            return string.Format("{{\"sender\": {0}, \"receiver\": {1}, \"message\": {{{2}}}, \"clock\": {{ \"{3}\" }}}}", 
+                Sender.ToString(),
+                Receiver.ToString(),
+                Message.ToString(),
+                Clock.ToString());
+        }
+    }
 }

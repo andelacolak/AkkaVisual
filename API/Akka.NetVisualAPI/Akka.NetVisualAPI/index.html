@@ -18,6 +18,8 @@
     <script type="text/javascript" src="view/js/vis.min.js"></script>
     <script type="text/javascript" src="view/js/options.js"></script>
 
+    <script type="text/javascript" src="view/js/sort.js"></script>
+    <script type="text/javascript" src="view/js/graph.js"></script>
     <script type="text/javascript" src="view/js/main.js"></script>
 
     <!--CSS links-->
@@ -36,7 +38,7 @@
         <div class="container-fluid">
           <div class="row row-eq-height">
             <div class="col-sm-7" style="padding-right: 0px;">
-              <div class="card ">
+              <div class="card light-opaque">
                 <div class="card-header">
                     Network
                 </div>
@@ -46,22 +48,30 @@
                </div>
         </div>
         <div class="col-sm-1" style="padding-left: 0px;">
-            <div class="network-helper">
-                <h2 class="display-6" id="zoom">Zoom</h1>
-                    <button class="btn btn-light btn-lg zoom-btn" id="plus"><i class="fa fa-plus" aria-hidden="false"></i></button>
-                    <div id="separator"></div>
-                    <button class="btn btn-light btn-lg zoom-btn" id="minus"><i class="fa fa-minus" aria-hidden="false"></i></button>
+            <div class="network-helper dark-opaque">
+                    <div id="separator-lg"></div>
+                    <button class="btn btn-light btn-lg zoom-btn center" id="plus" data-toggle="tooltip" data-placement="top" title="Zoom In">
+                        <i class="fa fa-plus" aria-hidden="false"></i>
+                    </button>
+                    <div id="separator-sm"></div>
+                    <button class="btn btn-light btn-lg zoom-btn center" id="minus" data-toggle="tooltip" data-placement="top" title="Zoom Out">
+                        <i class="fa fa-minus" aria-hidden="false"></i>
+                    </button>
+                    <div id="separator-lg"></div>
+                    <button class="btn btn-light btn-lg center" id="redo" data-toggle="tooltip" data-placement="top" title="Replay">
+                        <i class="fa fa-redo" aria-hidden="false"></i>
+                    </button>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div id="legend" class="network-helper">
+                <div id="legend" class="network-helper dark-opaque">
                     <h2 class="display-5" id="legend-title">Legend</h1>
                     </div>
                 </div>
             </div>
         </div>
         <hr class="my-4">
-        <div class="card">
+        <div class="card light-opaque">
             <div class="card-header">
                 Timeline
             </div>
@@ -73,7 +83,7 @@
 </p>
 </div>
 
-<div id="modal">
+<!-- <div id="modal">
     <p id="modalTitle">Waiting for data from server...</p>
     <div class="sk-folding-cube">
       <div class="sk-cube1 sk-cube"></div>
@@ -81,6 +91,9 @@
       <div class="sk-cube4 sk-cube"></div>
       <div class="sk-cube3 sk-cube"></div>
     </div>
-</div>
+</div> -->
+
+<!--     background-image: url(./View/img/business-computer-desk-1036808.jpg);
+    background-size: cover; -->
 </body>
 </html>

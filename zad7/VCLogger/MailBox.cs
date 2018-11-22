@@ -2,8 +2,10 @@
 using Akka.Configuration;
 using Akka.Dispatch;
 using Akka.Dispatch.MessageQueues;
-using System.Collections.Specialized;
+using System;
+using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using VCLogger.VCFolder;
 
@@ -24,6 +26,8 @@ namespace VCLogger
 
     class VisualMailbox : IMessageQueue, IUnboundedMessageQueueSemantics, IMultipleConsumerSemantics
     {
+        private const BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+
         private VectorClock _clock_sender = new VectorClock();
         private VectorClock _clock_receiver = new VectorClock();
 
@@ -46,10 +50,12 @@ namespace VCLogger
         public void Enqueue(IActorRef receiver, Envelope envelope)
         {
             VCMessage message = GetMessage(envelope);
+            VCActor senderActor = new VCActor(envelope.Sender.Path.ToString(), GetActorType(envelope.Sender));
+            VCActor receiverActor = new VCActor(receiver.Path.ToString(), GetActorType(receiver));
 
-            OnSend(receiver, envelope.Sender, message);
+            OnSend(receiverActor, senderActor, message);
 
-            OnReceive(receiver, envelope.Sender, message);
+            OnReceive(receiverActor, senderActor, message);
 
             SendToAPI();
 
@@ -68,20 +74,49 @@ namespace VCLogger
 
             foreach (var prop in props)
             {
-                var value = envelope.Message.GetType().GetProperty(prop.Name).GetValue(envelope.Message);
-                message.AddProp(prop.Name, value.ToString());
+                try
+                {
+                    var value = envelope.Message.GetType().GetProperty(prop.Name).GetValue(envelope.Message);
+                    if (value == null) { throw new Exception(); }
+                    message.AddProp(prop.Name, value.ToString());
+                }
+                catch { message.AddProp(prop.Name, "");}
             }
 
             return message;
         }
 
-        private void OnSend(IActorRef receiver, IActorRef sender, VCMessage message)
+        private string GetActorType(IActorRef actor)
+        {
+            object props;
+
+            if (IsField(actor))
+                props = actor.GetType().GetField("Props", bindingFlags).GetValue(actor);
+            else if (IsProp(actor))
+                props = actor.GetType().GetProperty("Props", bindingFlags).GetValue(actor);
+            else return null;
+
+            var type = props.GetType().GetProperty("TypeName", bindingFlags).GetValue(props);
+            return type.ToString().Split(',')[0];
+        }
+
+        private bool IsField(IActorRef actor)
+        {
+            return actor.GetType().GetField("Props", bindingFlags) != null;
+        }
+
+        private bool IsProp(IActorRef actor)
+        {
+            return actor.GetType().GetProperty("Props", bindingFlags) != null;
+        }
+
+        private void OnSend(VCActor receiver, VCActor sender, VCMessage message)
         {
             _clock_sender = VectorClockHelper.GetVectorClock(sender.Path.ToString());
 
             _clock_sender.Update(
-               sender.Path.ToString(),
-               receiver.Path.ToString(),
+               sender,
+               receiver,
                message
                );
 
@@ -90,16 +125,16 @@ namespace VCLogger
             VectorClockHelper.Update(sender.Path.ToString(), _clock_sender);
         }
 
-        private void OnReceive(IActorRef receiver, IActorRef sender, VCMessage message)
+        private void OnReceive(VCActor receiver, VCActor sender, VCMessage message)
         {
             _clock_receiver = VectorClockHelper.GetVectorClock(receiver.Path.ToString());
 
             _clock_receiver.Update(
-               sender.Path.ToString(),
-               receiver.Path.ToString(),
+               sender,
+               receiver,
                message
                );
-            
+
             _clock_receiver.Merge(_clock_sender);
 
             _clock_receiver.Tick(receiver.Path.ToString());
@@ -109,19 +144,23 @@ namespace VCLogger
 
         private void SendToAPI()
         {
-            using (var client = new WebClient())
+            try
             {
-                var values = QuickSerializer.Serialize(_clock_sender);
-
-                try
-                {
-                    var response = client.UploadValues("http://localhost:51510/api/vector_clock/save", values);
-                    var responseString = Encoding.Default.GetString(response);
-                }
-                catch
-                {
-                    System.Diagnostics.Debug.WriteLine("[ERROR] Visualisation API connection has failed.");
-                }
+                //var byteArray = Encoding.GetEncoding("iso-8859-1").GetBytes(str);
+                var byteArray = Encoding.Default.GetBytes(_clock_sender.ToString());
+                var request = WebRequest.Create("http://localhost:51510/api/vector_clock/save");
+                request.Credentials = CredentialCache.DefaultCredentials;
+                ((HttpWebRequest)request).UserAgent = "Akka.NET Visualiser";
+                request.Method = "POST";
+                request.ContentLength = byteArray.Length;
+                request.ContentType = "application/x-www-form-urlencoded";
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine("[ERROR] Visualisation API connection has failed.");
             }
         }
     }
