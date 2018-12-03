@@ -1,8 +1,10 @@
 ﻿using Akka.Actor;
 using Akka.Configuration;
+using Akka.Configuration.Hocon;
 using Akka.Dispatch;
 using Akka.Dispatch.MessageQueues;
 using System;
+using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Reflection;
@@ -67,6 +69,13 @@ namespace VCLogger
             return _messageQueue.TryDequeue(out envelope);
         }
 
+        private string GetUser()
+        {
+            var config = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
+            var configStr = config.AkkaConfig.Root.ToString();
+            return configStr.Substring(configStr.IndexOf("user") + 7).Split()[0];
+        }
+
         private VCMessage GetMessage(Envelope envelope)
         {
             VCMessage message = new VCMessage(envelope.Message.GetType().Name);
@@ -117,7 +126,8 @@ namespace VCLogger
             _clock_sender.Update(
                sender,
                receiver,
-               message
+               message,
+               GetUser()
                );
 
             _clock_sender.Tick(sender.Path.ToString());
@@ -132,7 +142,8 @@ namespace VCLogger
             _clock_receiver.Update(
                sender,
                receiver,
-               message
+               message,
+               GetUser()
                );
 
             _clock_receiver.Merge(_clock_sender);
