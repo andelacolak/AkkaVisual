@@ -16,6 +16,7 @@ namespace VCLogger
         public VCActor Receiver { get; private set; }
         public VCMessage Message { get; private set; }
         public VCClock Clock { get; private set; }
+        public string User { get; private set; }
 
         #region VectorClock Constructors
         public VectorClock()
@@ -24,15 +25,9 @@ namespace VCLogger
             Receiver = null;
             Message = new VCMessage();
             Clock = new VCClock();
+            User = null;
         }
-
-        public VectorClock(VCActor sender, VCActor receiver, VCMessage message, VCClock clock)
-        {
-            Sender = sender;
-            Receiver = receiver;
-            Message = message;
-            Clock = clock;
-        }
+        
         #endregion
 
         #region VectorClock Methods
@@ -46,11 +41,12 @@ namespace VCLogger
             Clock[name]++;
         }
 
-        public void Update(VCActor sender, VCActor receiver, VCMessage message)
+        public void Update(VCActor sender, VCActor receiver, VCMessage message, string user)
         {
             Sender = sender;
             Receiver = receiver;
             Message = message;
+            User = user;
         }
 
         public void Merge(VectorClock other)
@@ -85,11 +81,12 @@ namespace VCLogger
 
         public override string ToString()
         {
-            return string.Format("{{\"sender\": {0}, \"receiver\": {1}, \"message\": {{{2}}}, \"clock\": {{ \"{3}\" }}}}", 
+            return string.Format("{{\"sender\": {0}, \"receiver\": {1}, \"message\": {{{2}}}, \"clock\": {{ \"{3}\" }}, \"user\": \"{4}\"}}", 
                 Sender.ToString(),
                 Receiver.ToString(),
                 Message.ToString(),
-                Clock.ToString());
+                Clock.ToString(),
+                User);
         }
     }
 }

@@ -32,6 +32,12 @@ namespace Akka.NetVisualAPI
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+               name: "Session",
+               routeTemplate: "",
+               defaults: new { controller = "Session", action = "Index" }
+               );
+
+            config.Routes.MapHttpRoute(
                name: "SaveVectorClock",
                routeTemplate: "api/vector_clock/save",
                defaults: new { controller = "Visual", action = "SaveVectorClock" }
