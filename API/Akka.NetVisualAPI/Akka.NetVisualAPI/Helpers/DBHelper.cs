@@ -9,7 +9,8 @@ namespace Akka.NetVisualAPI.Helpers
 {
     public static class DBHelper
     {
-        private static string connectionString { get; } = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\App_Data\VisualDB.mdf';Integrated Security=True";
+        private static string connectionString { get; } = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\VisualDB.mdf;Integrated Security=True";
+        //private static string connectionString { get; } = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI\App_Data\VisualDB.mdf';Integrated Security=True";
         
         public static void AddConnection(string userId, string userConnection)
         {

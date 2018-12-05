@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 using System.Web.Http;
 
 namespace Akka.NetVisualAPI.Controllers
@@ -20,7 +21,8 @@ namespace Akka.NetVisualAPI.Controllers
         {
             UserHelper.User = userId;
             var response = new HttpResponseMessage();
-            response.Content = new StringContent(File.ReadAllText(@"C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\API\Akka.NetVisualAPI\Akka.NetVisualAPI/index.html"));
+            var path = HostingEnvironment.ApplicationPhysicalPath + "index.html";
+            response.Content = new StringContent(File.ReadAllText(path));
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
             return response;
         }
