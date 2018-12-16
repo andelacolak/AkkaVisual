@@ -3,10 +3,13 @@ using Akka.Configuration;
 using Akka.Configuration.Hocon;
 using Akka.Dispatch;
 using Akka.Dispatch.MessageQueues;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Configuration;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using VCLogger.VCFolder;
@@ -155,24 +158,18 @@ namespace VCLogger
 
         private void SendToAPI()
         {
-            try
-            {
-                //var byteArray = Encoding.GetEncoding("iso-8859-1").GetBytes(str);
-                var byteArray = Encoding.Default.GetBytes(_clock_sender.ToString());
-                var request = WebRequest.Create("http://localhost:51510/api/vector_clock/save");
-                request.Credentials = CredentialCache.DefaultCredentials;
-                ((HttpWebRequest)request).UserAgent = "Akka.NET Visualiser";
-                request.Method = "POST";
-                request.ContentLength = byteArray.Length;
-                request.ContentType = "application/x-www-form-urlencoded";
-                Stream dataStream = request.GetRequestStream();
-                dataStream.Write(byteArray, 0, byteArray.Length);
-                dataStream.Close();
-            }
-            catch
-            {
-                System.Diagnostics.Debug.WriteLine("[ERROR] Visualisation API connection has failed.");
-            }
+            var uri = "http://localhost:5000/api/vector_clock/save";
+            var byteArray = Encoding.Default.GetBytes(_clock_sender.ToString());
+            var request = WebRequest.Create(uri);
+            request.Credentials = CredentialCache.DefaultCredentials;
+            ((HttpWebRequest)request).UserAgent = "Akka.NET Visualiser";
+            ((HttpWebRequest)request).Accept = "application/json";
+            request.Method = "POST";
+            request.ContentLength = byteArray.Length;
+            request.ContentType = "application/json";
+            Stream dataStream = request.GetRequestStream();
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
         }
     }
 }
