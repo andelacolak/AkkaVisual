@@ -74,4 +74,6 @@ C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\Mai
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.pdb
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\VCLogger.dll
 C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\bin\Debug\VCLogger.pdb
-C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.csprojResolveAssemblyReference.cache
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.csprojAssemblyReference.cache
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.csproj.CoreCompileInputs.cache
+C:\Users\Andela\Desktop\Anđela\pmf\Raspodijeljeni sustavi\acolak_rs_projekt\MailboxLibrary\zad7\Zdk01\obj\Debug\Zdk01.csproj.CopyComplete
