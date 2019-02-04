@@ -1,4 +1,4 @@
-# Akka.NET-Visualisation
+# AkkaVisual
 <h2>Actor model visualisation for Pedagogical Purposes</h2>
 <p>Akka.Net Visualisation is a project intended for Actor model visualisation for Pedagogical Purposes. Project contains VCLogger library that collects information about actors in your Akka.NET project and sends those information on Web API to visualise project behavior.</p>
 
