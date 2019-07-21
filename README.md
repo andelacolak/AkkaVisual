@@ -11,15 +11,8 @@
 <h2>Getting started</h2>
 <p>Add VCLogger library to project you wish to visualise. Add this code to HOCON configuration in <b>App.config</b> file.</p>
 
-      akka.actor.deployment {
-         "/*" {
-             mailbox = visual-mailbox
-         } 
-         "/*/*" {
-             mailbox = visual-mailbox
-         }
+      akka.actor.default-mailbox {
+          mailbox-type = "VCLogger.VisualMailboxType, VCLogger"
       }
-      visual-mailbox {
-        mailbox-type : "VCLogger.VisualMailboxType, VCLogger"
-      }
-<p><b>"/*"</b> applies mailbox only to those actors whose family tree depth is 0. Make sure to apply visual-mailbox to all actors.</p>
+<p>Start your project and enjoy :)</p>
+
