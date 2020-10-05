@@ -2,14 +2,23 @@
 using Akka.Configuration.Hocon;
 using Akka.Dispatch;
 using Akka.Dispatch.MessageQueues;
+using Newtonsoft.Json;
 using System;
 using System.Configuration;
+using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AkkaVisual
 {
     public class AkkaVisualMailbox : IMessageQueue, IUnboundedMessageQueueSemantics, IMultipleConsumerSemantics
     {
+        //TODO: move to service
+        private static readonly HttpClient client = new HttpClient();
+
         private const BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
 
         private VectorClock clockSender = new VectorClock();
@@ -126,28 +135,32 @@ namespace AkkaVisual
             VectorClockHelper.Update(receiver.Path.ToString(), clockRecever);
         }
 
-        private void SendToAPI()
+        private async Task SendToAPI()
         {
-            var test = VectorClockHelper.VectorClockList;
-            Console.WriteLine(clockSender.User);
-            //try
-            //{
-            //    //var byteArray = Encoding.GetEncoding("iso-8859-1").GetBytes(str);
-            //    var byteArray = Encoding.Default.GetBytes(_clock_sender.ToString());
-            //    var request = WebRequest.Create("http://localhost:51510/api/vector_clock/save");
-            //    request.Credentials = CredentialCache.DefaultCredentials;
-            //    ((HttpWebRequest)request).UserAgent = "Akka.NET Visualiser";
-            //    request.Method = "POST";
-            //    request.ContentLength = byteArray.Length;
-            //    request.ContentType = "application/x-www-form-urlencoded";
-            //    Stream dataStream = request.GetRequestStream();
-            //    dataStream.Write(byteArray, 0, byteArray.Length);
-            //    dataStream.Close();
-            //}
-            //catch
-            //{
-            //    System.Diagnostics.Debug.WriteLine("[ERROR] Visualisation API connection has failed.");
-            //}
+            try
+            {
+                var json = JsonConvert.SerializeObject(clockSender);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync("http://localhost:58967/api/test", content);
+
+                var responseString = await response.Content.ReadAsStringAsync();
+                //var json = JsonConvert.SerializeObject(clockSender);
+                //var byteArray = Encoding.Default.GetBytes(json);
+                //var request = WebRequest.Create("http://localhost:58967/api/test");
+                //request.Credentials = CredentialCache.DefaultCredentials;
+                //((HttpWebRequest)request).UserAgent = "Akka.NET Visualiser";
+                //request.Method = "POST";
+                //request.ContentLength = byteArray.Length;
+                //request.ContentType = "application/x-www-form-urlencoded";
+                //Stream dataStream = request.GetRequestStream();
+                //dataStream.Write(byteArray, 0, byteArray.Length);
+                //dataStream.Close();
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("[ERROR] Visualisation API connection has failed.");
+            }
         }
     }
 }

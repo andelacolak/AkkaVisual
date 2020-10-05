@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaVisual", "AkkaVisual\Ak
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaVisualDemo", "AkkaVisualDemo\AkkaVisualDemo.csproj", "{1BC8B55F-D266-49A8-8AE8-625CAC175061}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AkkaVisualWeb", "AkkaVisualWeb", "{F3D224EF-9BB2-497A-B8F4-2F9A1835D4F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaVisualApi", "AkkaVisualApi\AkkaVisualApi.csproj", "{160C707C-EDFE-4C33-9041-012B97643D0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{1BC8B55F-D266-49A8-8AE8-625CAC175061}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BC8B55F-D266-49A8-8AE8-625CAC175061}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BC8B55F-D266-49A8-8AE8-625CAC175061}.Release|Any CPU.Build.0 = Release|Any CPU
+		{160C707C-EDFE-4C33-9041-012B97643D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160C707C-EDFE-4C33-9041-012B97643D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160C707C-EDFE-4C33-9041-012B97643D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160C707C-EDFE-4C33-9041-012B97643D0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{160C707C-EDFE-4C33-9041-012B97643D0F} = {F3D224EF-9BB2-497A-B8F4-2F9A1835D4F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {85C1FF87-6019-41D0-AF67-4AD88BCE55EE}
